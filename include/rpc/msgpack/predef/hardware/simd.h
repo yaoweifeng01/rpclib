@@ -78,8 +78,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 #endif
 
 #if defined(MSGPACK_HW_SIMD_X86_AVAILABLE) && defined(MSGPACK_HW_SIMD_X86_AMD_AVAILABLE)
-    // If both standard _X86 and _X86_AMD are available,
-    // then take the biggest version of the two!
+// If both standard _X86 and _X86_AMD are available,
+// then take the biggest version of the two!
 #   if MSGPACK_HW_SIMD_X86 >= MSGPACK_HW_SIMD_X86_AMD
 #      define MSGPACK_HW_SIMD MSGPACK_HW_SIMD_X86
 #   else
@@ -88,7 +88,7 @@ http://www.boost.org/LICENSE_1_0.txt)
 #endif
 
 #if !defined(MSGPACK_HW_SIMD)
-    // At this point, only one of these two is defined
+// At this point, only one of these two is defined
 #   if defined(MSGPACK_HW_SIMD_X86_AVAILABLE)
 #      define MSGPACK_HW_SIMD MSGPACK_HW_SIMD_X86
 #   endif

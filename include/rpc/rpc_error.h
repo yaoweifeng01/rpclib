@@ -16,7 +16,7 @@ namespace rpc {
 //! msgpack-rpc specification allows. In client code you probably don't want to
 //! throw it, hence its constructor is private.
 class rpc_error : public std::runtime_error {
-public:
+  public:
     //! \brief Returns the name of the function that was
     //! called on the server while the error occurred.
     std::string get_function_name() const;
@@ -25,12 +25,12 @@ public:
     //! provided.
     virtual RPCLIB_MSGPACK::object_handle &get_error();
 
-private:
+  private:
     friend class client;
     rpc_error(std::string const &what_arg, std::string const &function_name,
               std::shared_ptr<RPCLIB_MSGPACK::object_handle> o);
 
-private:
+  private:
     std::string func_name_;
     std::shared_ptr<RPCLIB_MSGPACK::object_handle> ob_h_;
 };
@@ -39,11 +39,11 @@ private:
 //! or a call takes more time than it is set in set_timeout.
 //! \note There isn't necessarily a timeout set, it is an optional value.
 class timeout : public std::runtime_error {
-public:
+  public:
     //! \brief Describes the exception.
     const char *what() const noexcept override;
 
-private:
+  private:
     friend class client;
     explicit timeout(std::string const &what_arg);
     std::string formatted;

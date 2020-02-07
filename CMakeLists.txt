@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.9.0)
 project(rpc VERSION 2.2.1)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+set(CMAKE_CXX_STANDARD 11)
+add_compile_options(-pthread)
+add_compile_options(-fPIC)
 
 include(policies)
 include(msvc_support)
@@ -13,13 +16,13 @@ include(check_warning_flag)
 #
 option(RPCLIB_BUILD_TESTS 
   "Build unit RPCLIB_BUILD_TESTS." 
-  OFF)
+  ON)
 option(RPCLIB_GENERATE_COMPDB 
   "Generate compilation database. Useful for YCM." 
   OFF)
 option(RPCLIB_BUILD_EXAMPLES 
   "Build examples." 
-  OFF)
+  ON)
 option(RPCLIB_ENABLE_LOGGING 
   "ALlow logging in the library for debug purposes."
   OFF)
@@ -91,6 +94,7 @@ set(DEP_SOURCES
   ${RPCLIB_DEPENDENCIES}/src/posix.cc)
 
 add_library(${PROJECT_NAME}
+  
   lib/rpc/dispatcher.cc
   lib/rpc/server.cc
   lib/rpc/client.cc
@@ -202,7 +206,7 @@ if(RPCLIB_BUILD_EXAMPLES)
   set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/localbuild")
   set(ENV{RPCLIB_DEFAULT_PORT} "${RPCLIB_DEFAULT_PORT}")
   add_subdirectory(examples/echo)
-  add_subdirectory(examples/mandelbrot)
+  #add_subdirectory(examples/mandelbrot)
   add_subdirectory(examples/calculator)
 endif()
 

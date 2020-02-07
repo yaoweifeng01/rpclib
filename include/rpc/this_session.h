@@ -18,14 +18,14 @@ class server_session;
 //! \note Accessing the this_session() object is thread safe, but incurs some
 //! syncrhonization cost in the form of atomic flags. (usually not a concern)
 class this_session_t {
-public:
+  public:
     //! \brief Gracefully exits the session (i.e. ongoing writes and reads are
     //! completed; queued writes and reads are not).
     //! \note Use this function if you need to close the connection from a
     //! handler.
     void post_exit();
 
-    //! \brief Returns an ID that uniquely identifies a session. 
+    //! \brief Returns an ID that uniquely identifies a session.
     //! \note This is not an ID for the client. If the client disconnects
     //! and reconnects, this ID may change. That being said, you can
     //! use this ID to store client-specific information *for the duration
@@ -34,7 +34,7 @@ public:
 
     friend class rpc::detail::server_session;
 
-private:
+  private:
     void clear();
     void set_id(session_id_t value);
 

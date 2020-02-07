@@ -87,12 +87,11 @@ void msgpack_zone_clear(msgpack_zone* zone);
 MSGPACK_DLLEXPORT
 void* msgpack_zone_malloc_expand(msgpack_zone* zone, size_t size);
 
-static inline void* msgpack_zone_malloc_no_align(msgpack_zone* zone, size_t size)
-{
+static inline void* msgpack_zone_malloc_no_align(msgpack_zone* zone, size_t size) {
     char* ptr;
     msgpack_zone_chunk_list* cl = &zone->chunk_list;
 
-    if(zone->chunk_list.free < size) {
+    if (zone->chunk_list.free < size) {
         return msgpack_zone_malloc_expand(zone, size);
     }
 
@@ -103,8 +102,7 @@ static inline void* msgpack_zone_malloc_no_align(msgpack_zone* zone, size_t size
     return ptr;
 }
 
-static inline void* msgpack_zone_malloc(msgpack_zone* zone, size_t size)
-{
+static inline void* msgpack_zone_malloc(msgpack_zone* zone, size_t size) {
     char* aligned =
         (char*)(
             (size_t)(
@@ -112,7 +110,7 @@ static inline void* msgpack_zone_malloc(msgpack_zone* zone, size_t size)
             ) / MSGPACK_ZONE_ALIGN * MSGPACK_ZONE_ALIGN
         );
     size_t adjusted_size = size + (aligned - zone->chunk_list.ptr);
-    if(zone->chunk_list.free >= adjusted_size) {
+    if (zone->chunk_list.free >= adjusted_size) {
         zone->chunk_list.free -= adjusted_size;
         zone->chunk_list.ptr  += adjusted_size;
         return aligned;
@@ -128,15 +126,14 @@ static inline void* msgpack_zone_malloc(msgpack_zone* zone, size_t size)
 
 
 bool msgpack_zone_push_finalizer_expand(msgpack_zone* zone,
-        void (*func)(void* data), void* data);
+                                        void (*func)(void* data), void* data);
 
 static inline bool msgpack_zone_push_finalizer(msgpack_zone* zone,
-        void (*func)(void* data), void* data)
-{
+        void (*func)(void* data), void* data) {
     msgpack_zone_finalizer_array* const fa = &zone->finalizer_array;
     msgpack_zone_finalizer* fin = fa->tail;
 
-    if(fin == fa->end) {
+    if (fin == fa->end) {
         return msgpack_zone_push_finalizer_expand(zone, func, data);
     }
 
@@ -148,8 +145,7 @@ static inline bool msgpack_zone_push_finalizer(msgpack_zone* zone,
     return true;
 }
 
-static inline void msgpack_zone_swap(msgpack_zone* a, msgpack_zone* b)
-{
+static inline void msgpack_zone_swap(msgpack_zone* a, msgpack_zone* b) {
     msgpack_zone tmp = *a;
     *a = *b;
     *b = tmp;

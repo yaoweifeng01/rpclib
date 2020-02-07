@@ -5,8 +5,8 @@ Distributed under the Boost Software License, Version 1.0.
 http://www.boost.org/LICENSE_1_0.txt)
 */
 
-#ifndef MSGPACK_PREDEF_ARCHITECTURE_X86_32_H
-#define MSGPACK_PREDEF_ARCHITECTURE_X86_32_H
+#ifndef MSGPACK_PREDEF_ARCHITECTURE_X86_B32_H
+#define MSGPACK_PREDEF_ARCHITECTURE_X86_B32_H
 
 #include <rpc/msgpack/predef/version_number.h>
 #include <rpc/msgpack/predef/make.h>

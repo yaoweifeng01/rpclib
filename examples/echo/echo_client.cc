@@ -3,6 +3,7 @@
 #include <iostream>
 
 int main() {
+    //rpc::client c("localhost", rpc::constants::DEFAULT_PORT);
     rpc::client c("localhost", rpc::constants::DEFAULT_PORT);
 
     std::string text;
@@ -12,4 +13,7 @@ int main() {
             std::cout << "> " <<  result << std::endl;
         }
     }
+    // auto result = c.call("add", 2, 3).as<int>();
+    // std::cout << "The result is: " << result << std::endl;
+    return 0;
 }

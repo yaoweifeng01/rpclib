@@ -21,7 +21,7 @@ class server;
 namespace detail {
 
 class server_session : public async_writer {
-public:
+  public:
     server_session(server *srv, RPCLIB_ASIO::io_service *io,
                    RPCLIB_ASIO::ip::tcp::socket socket,
                    std::shared_ptr<dispatcher> disp, bool suppress_exceptions);
@@ -29,10 +29,10 @@ public:
 
     void close();
 
-private:
+  private:
     void do_read();
 
-private:
+  private:
     server* parent_;
     RPCLIB_ASIO::io_service *io_;
     RPCLIB_ASIO::strand read_strand_;

@@ -26,7 +26,7 @@ class server_session;
 //! functions to start listening on the port.
 //! This class is not copyable, but moveable.
 class server {
-public:
+  public:
     //! \brief Constructs a server that listens on the localhost on the
     //! specified port.
     //!
@@ -109,12 +109,12 @@ public:
 
     friend class detail::server_session;
 
-private:
+  private:
     //! \brief Closes a specific session.
     void close_session(std::shared_ptr<detail::server_session> const& s);
 
-private:
-	RPCLIB_DECLARE_PIMPL()
+  private:
+    RPCLIB_DECLARE_PIMPL()
     std::shared_ptr<detail::dispatcher> disp_;
 };
 

@@ -69,8 +69,8 @@ http://www.boost.org/LICENSE_1_0.txt)
 #if !defined(MSGPACK_HW_SIMD_X86_AMD)
 #   define MSGPACK_HW_SIMD_X86_AMD MSGPACK_VERSION_NUMBER_NOT_AVAILABLE
 #else
-    // At this point, we know that we have an AMD CPU, we do need to check for
-    // other x86 extensions to determine the final version number.
+// At this point, we know that we have an AMD CPU, we do need to check for
+// other x86 extensions to determine the final version number.
 #   include <rpc/msgpack/predef/hardware/simd/x86.h>
 #   if MSGPACK_HW_SIMD_X86 > MSGPACK_HW_SIMD_X86_AMD
 #      undef MSGPACK_HW_SIMD_X86_AMD

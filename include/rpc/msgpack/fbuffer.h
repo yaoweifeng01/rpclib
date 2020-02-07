@@ -23,8 +23,7 @@ extern "C" {
  * @{
  */
 
-static inline int msgpack_fbuffer_write(void* data, const char* buf, size_t len)
-{
+static inline int msgpack_fbuffer_write(void* data, const char* buf, size_t len) {
     return (len == fwrite(buf, len, 1, (FILE *)data)) ? 0 : -1;
 }
 

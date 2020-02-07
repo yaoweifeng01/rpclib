@@ -21,7 +21,7 @@ namespace rpc {
 //! asynchronously. When the client object is created, it initiates connecting
 //! to the given server asynchronically and disconnects when it is destroyed.
 class client {
-public:
+  public:
     //! \brief Constructs a client.
     //!
     //! When a client is constructed, it initiates a connection
@@ -78,7 +78,7 @@ public:
     //! (which is a RPCLIB_MSGPACK::object).
     template <typename... Args>
     std::future<RPCLIB_MSGPACK::object_handle> async_call(std::string const &func_name,
-                                                   Args... args);
+            Args... args);
 
     //! \brief Sends a notification with the given name and arguments (if any).
     //!
@@ -124,7 +124,7 @@ public:
     //! \brief Waits for the completion of all ongoing calls.
     void wait_all_responses();
 
-private:
+  private:
     //! \brief Type of a promise holding a future response.
     using rsp_promise = std::promise<RPCLIB_MSGPACK::object_handle>;
 
@@ -138,7 +138,7 @@ private:
     int get_next_call_idx();
     RPCLIB_NORETURN void throw_timeout(std::string const& func_name);
 
-private:
+  private:
     static constexpr double buffer_grow_factor = 1.8;
     RPCLIB_DECLARE_PIMPL()
 };
